@@ -16,7 +16,7 @@ namespace keepr_final.Repositories
     }
     public IEnumerable<Keep> Get()
     {
-      string sql = "SELECT * FROM keeps";
+      string sql = "SELECT * FROM keeps WHERE isPrivate = 0";
       return _db.Query<Keep>(sql);
     }
 
@@ -45,7 +45,7 @@ namespace keepr_final.Repositories
     public void Edit(Keep keep)
     {
       string sql = @"
-                UPDATE keepss
+                UPDATE keeps
                 SET
                     name = @Name,
                     description = @Description,
