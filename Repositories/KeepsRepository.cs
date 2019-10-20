@@ -26,18 +26,19 @@ namespace keepr_final.Repositories
       return _db.QueryFirstOrDefault<Keep>(sql, new { id });
     }
 
-    public IEnumerable<Keep> GetByUser()
+    public IEnumerable<Keep> GetByUser(string userId)
     {
-      string sql = "SELECT * FROM keeps WHERE userId = @UserId";
-      return _db.Query<Keep>(sql);
+      string sql = "SELECT * FROM keeps WHERE userId = @userId";
+      return _db.Query<Keep>(sql, new { userId });
     }
     public int Create(Keep newKeep)
     {
       string sql = @"
         INSERT INTO keeps
-        (name, description, img, isPrivate)
+        (name, description, img, isPrivate, userId)
         VALUES
-        (@Name, @Description, @Img, @IsPrivate)";
+        (@Name, @Description, @Img, @IsPrivate, @UserId);
+        SELECT LAST_INSERT_ID();";
       return _db.ExecuteScalar<int>(sql, newKeep);
     }
 

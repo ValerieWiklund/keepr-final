@@ -46,13 +46,13 @@ namespace keepr_final.Controllers
     }
 
     [Authorize]
-    [HttpGet("user/{id}")]
+    [HttpGet("user")]
     public ActionResult<IEnumerable<Keep>> GetByUser()
     {
       try
       {
         string userId = HttpContext.User.FindFirstValue("Id");
-        return Ok(_ks.Get());
+        return Ok(_ks.GetByUser(userId));
       }
       catch (Exception e)
       {
@@ -66,6 +66,7 @@ namespace keepr_final.Controllers
     {
       try
       {
+        newKeep.UserId = HttpContext.User.FindFirstValue("Id");
         return Ok(_ks.Create(newKeep));
       }
       catch (Exception e)

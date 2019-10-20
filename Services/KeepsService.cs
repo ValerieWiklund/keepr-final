@@ -24,9 +24,9 @@ namespace keepr_final.Services
       return exists;
     }
 
-    public IEnumerable<Keep> GetByUser()
+    public IEnumerable<Keep> GetByUser(string userId)
     {
-      return _repo.Get();
+      return _repo.GetByUser(userId);
     }
 
     public Keep Create(Keep newKeep)
