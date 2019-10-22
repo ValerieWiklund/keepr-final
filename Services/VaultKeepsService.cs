@@ -21,7 +21,7 @@ namespace keepr_final.Services
     public IEnumerable<Keep> GetKeeps(int vaultId, string userId)
     {
       Vault vault = _vaultrepo.Get(vaultId);
-      if (vault == null) { throw new Exception("Invalid Vault Id"); }
+      if (vault == null || vault.UserId != userId) { throw new Exception("Invalid Request"); }
       return _repo.GetKeeps(vaultId, userId);
     }
 

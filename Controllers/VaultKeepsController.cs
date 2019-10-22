@@ -25,7 +25,7 @@ namespace keepr_final.Controllers
     {
       try
       {
-        var userId = HttpContext.User.FindFirstValue("Id");
+        string userId = HttpContext.User.FindFirstValue("Id");
         return Ok(_vks.GetKeeps(vaultId, userId));
       }
       catch (Exception e)
@@ -47,6 +47,9 @@ namespace keepr_final.Controllers
         return BadRequest(e.Message);
       }
     }
+
+    [HttpPut]
+    public ActionResult<string> RemoveVaultKeep()
 
 
   }

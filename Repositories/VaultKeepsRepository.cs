@@ -19,7 +19,7 @@ namespace keepr_final.Repositories
       string sql = @"SELECT * FROM vaultkeeps vk
                 INNER JOIN keeps k ON k.id = vk.keepId 
                 WHERE (vaultId = @vaultId AND vk.userId = @userId)";
-      return _db.Query<Keep>(sql, new { vaultId });
+      return _db.Query<Keep>(sql, new { vaultId, userId });
     }
 
     internal int Create(VaultKeep newVaultKeep)
