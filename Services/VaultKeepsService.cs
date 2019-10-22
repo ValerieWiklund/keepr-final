@@ -18,16 +18,21 @@ namespace keepr_final.Services
     }
 
 
-    public IEnumerable<Keep> GetKeeps(int vaultId)
+    public IEnumerable<Keep> GetKeeps(int vaultId, string userId)
     {
       Vault vault = _vaultrepo.Get(vaultId);
       if (vault == null) { throw new Exception("Invalid Vault Id"); }
-      return _repo.GetKeeps(vaultId);
+      return _repo.GetKeeps(vaultId, userId);
     }
 
     public VaultKeep Create(VaultKeep newVaultKeep)
     {
-      //add the keepid, userid and the vaultid to a vaultkeepid
+
+      //   Vault vault = _vaultrepo.Get(VaultKeep.vaultId);
+
+
+      int id = _repo.Create(newVaultKeep);
+      newVaultKeep.Id = id;
       return newVaultKeep;
     }
   }

@@ -7,6 +7,9 @@ namespace keepr_final.Interfaces
     string Description { get; set; }
     string Img { get; set; }
     bool IsPrivate { get; set; }
+    int Views { get; set; }
+    int Shares { get; set; }
+    int Keeps { get; set; }
     string UserId { get; set; }
   }
 }

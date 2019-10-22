@@ -10,7 +10,7 @@ namespace keepr_final.Controllers
 {
   [Authorize]
   [ApiController]
-  [Route("/api[controller]")]
+  [Route("/api/[controller]")]
   public class VaultKeepsController : ControllerBase
   {
     private readonly VaultKeepsService _vks;
@@ -25,7 +25,8 @@ namespace keepr_final.Controllers
     {
       try
       {
-        return Ok(_vks.GetKeeps(vaultId));
+        var userId = HttpContext.User.FindFirstValue("Id");
+        return Ok(_vks.GetKeeps(vaultId, userId));
       }
       catch (Exception e)
       {
