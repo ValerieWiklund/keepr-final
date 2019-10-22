@@ -50,14 +50,17 @@ namespace keepr_final.Repositories
                     name = @Name,
                     description = @Description,
                     img = @Img,
-                    isPrivate = @IsPrivate
+                    isPrivate = @IsPrivate,
+                    views = @Views,
+                    shares = @Shares,
+                    keeps = @Keeps
                 WHERE id = @Id";
       _db.Execute(sql, keep);
     }
 
     public void Delete(int id)
     {
-      string sql = "DELETE FROM keeps WHERE id = @id";
+      string sql = "DELETE FROM keeps WHERE id = @id AND isPrivate = 1";
       _db.Execute(sql, new { id });
     }
 

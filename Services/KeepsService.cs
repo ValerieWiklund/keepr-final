@@ -53,6 +53,7 @@ namespace keepr_final.Services
     {
       Keep exists = _repo.Get(id);
       if (exists == null) { throw new Exception("Invalid Id"); }
+      if (exists.IsPrivate == false) { throw new Exception("You cannot delete a public keep"); }
       _repo.Delete(id);
       return "Successfully Deleted";
     }
