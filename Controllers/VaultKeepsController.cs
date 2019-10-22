@@ -49,7 +49,18 @@ namespace keepr_final.Controllers
     }
 
     [HttpPut]
-    public ActionResult<string> RemoveVaultKeep()
+    public ActionResult<string> RemoveVaultKeep([FromBody] VaultKeep vk)
+    {
+      try
+      {
+        string userId = HttpContext.User.FindFirstValue("Id");
+        return Ok(_vks.RemoveVaultKeep(vk, userId));
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
 
 
   }

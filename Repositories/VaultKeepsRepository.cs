@@ -22,7 +22,7 @@ namespace keepr_final.Repositories
       return _db.Query<Keep>(sql, new { vaultId, userId });
     }
 
-    internal int Create(VaultKeep newVaultKeep)
+    public int Create(VaultKeep newVaultKeep)
     {
       string sql = @"INSERT INTO vaultkeeps
                 (vaultId, keepId, userId)
@@ -30,6 +30,18 @@ namespace keepr_final.Repositories
                 (@VaultId, @KeepId, @UserId);
                 SELECT LAST_INSERT_ID();";
       return _db.ExecuteScalar<int>(sql, newVaultKeep);
+    }
+
+    internal VaultKeep GetVaultKeep(VaultKeep vk)
+    {
+      string sql = "SELECT * FROM vaultkeeps WHERE vaultId = @vaultId AND keepId = @keepId";
+      return _db.QueryFirstOrDefault<VaultKeep>(sql, vk);
+    }
+
+    public void RemoveVaultKeep(int id)
+    {
+      string sql = "DELETE FROM vaultkeeps WHERE id = @id";
+      _db.Execute(sql, new { id });
     }
   }
 }

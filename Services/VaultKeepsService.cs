@@ -25,7 +25,7 @@ namespace keepr_final.Services
       return _repo.GetKeeps(vaultId, userId);
     }
 
-    public VaultKeep Create(VaultKeep newVaultKeep)
+    internal VaultKeep Create(VaultKeep newVaultKeep)
     {
 
       //   Vault vault = _vaultrepo.Get(VaultKeep.vaultId);
@@ -34,6 +34,15 @@ namespace keepr_final.Services
       int id = _repo.Create(newVaultKeep);
       newVaultKeep.Id = id;
       return newVaultKeep;
+    }
+
+    public string RemoveVaultKeep(VaultKeep vaultKeep, string userId)
+    {
+      VaultKeep vk = _repo.GetVaultKeep(vaultKeep);
+      int id = vk.Id;
+      if (vk == null || vk.UserId != userId) { throw new Exception("Invalid Information"); }
+      _repo.RemoveVaultKeep(id);
+      return "successfully Deleted";
     }
   }
 }
