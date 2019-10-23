@@ -31,7 +31,6 @@ export default new Vuex.Store({
       state.user = {}
     },
     setKeeps(state, data) {
-      debugger
       state.keeps = data
     },
 
@@ -99,6 +98,15 @@ export default new Vuex.Store({
       }
     },
 
+    async deleteKeep({ dispatch }, data) {
+      try {
+        let res = await api.delete(`keeps/${data.id}`)
+        dispatch('getKeepsByUser')
+      } catch (error) {
+        console.error(error)
+      }
+    },
+
 
     //#endregion
 
@@ -118,10 +126,32 @@ export default new Vuex.Store({
       } catch (error) {
         console.error(error)
       }
+    },
+
+    async deleteVault({ dispatch }, data) {
+      try {
+        let res = await api.delete(`vaults/${data.id}`)
+        dispatch('getVaults')
+      } catch (error) {
+        console.error(error)
+      }
+    },
+    //#endregion
+
+    //#region  --VAULTKEEPS --
+    async getKeepsByVault({ commit, dispatch }, data) {
+      try {
+        debugger
+        let res = await api.get(`vaultkeeps/${data}`)
+        commit('setKeeps', res.data)
+      } catch (error) {
+        console.error(error)
+      }
     }
 
 
 
-    //#endregion
+
+    ////#endregion
   }
 })
