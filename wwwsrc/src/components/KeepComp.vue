@@ -1,6 +1,6 @@
 <template>
-  <div class="keep" style="width: 18rem;">
-    <img v-bind:src="`${keepProp.image}`" class="card-img-top" alt="..." />
+  <div class="keep card border-primary" style="width: 100%;">
+    <img v-bind:src="`${keepProp.img}`" class="card-img-top" alt="..." />
     <div class="card-body">
       <h3>{{keepProp.name}}</h3>
       <p class="card-text">{{keepProp.description}}</p>

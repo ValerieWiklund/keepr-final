@@ -33,6 +33,10 @@ export default new Vuex.Store({
     setKeeps(state, data) {
       debugger
       state.keeps = data
+    },
+
+    setVaults(state, data) {
+      state.vaults = data
     }
   },
   actions: {
@@ -71,7 +75,6 @@ export default new Vuex.Store({
     //#region -- KEEPS --
     async getKeeps({ commit, dispatch }) {
       try {
-        debugger;
         let res = await api.get('keeps')
         commit('setKeeps', res.data)
       } catch (error) {
@@ -85,13 +88,38 @@ export default new Vuex.Store({
       } catch (error) {
         console.error(error)
       }
-    }
+    },
 
+    async addKeep({ dispatch }, data) {
+      try {
+        let res = await api.post('keeps', data)
+        dispatch('getKeepsByUser')
+      } catch (error) {
+        console.error(error)
+      }
+    },
 
 
     //#endregion
 
     //#region -- VAULTS --
+    async getVaults({ commit, dispatch }) {
+      try {
+        let res = await api.get('vaults')
+        commit('setVaults', res.data)
+      } catch (error) {
+        console.error(error)
+      }
+    },
+    async addVault({ dispatch }, data) {
+      try {
+        let res = await api.post('vaults', data)
+        dispatch('getVaults')
+      } catch (error) {
+        console.error(error)
+      }
+    }
+
 
 
     //#endregion
