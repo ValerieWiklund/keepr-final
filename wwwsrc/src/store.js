@@ -60,7 +60,7 @@ export default new Vuex.Store({
         let success = await AuthService.Logout()
         if (!success) { }
         commit('resetState')
-        router.push({ name: "login" })
+        router.push({ name: "home" })
       } catch (e) {
         console.warn(e.message)
       }
@@ -73,6 +73,14 @@ export default new Vuex.Store({
       try {
         debugger;
         let res = await api.get('keeps')
+        commit('setKeeps', res.data)
+      } catch (error) {
+        console.error(error)
+      }
+    },
+    async getKeepsByUser({ commit, dispatch }) {
+      try {
+        let res = await api.get('keeps/user')
         commit('setKeeps', res.data)
       } catch (error) {
         console.error(error)

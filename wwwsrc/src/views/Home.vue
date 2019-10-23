@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="home">
-      <h1>Welcome Home {{user.username}}</h1>
+      <h1>Welcome to Keepr</h1>
       <button v-if="user.id" @click="logout">logout</button>
       <router-link v-else :to="{name: 'login'}">Login</router-link>
     </div>

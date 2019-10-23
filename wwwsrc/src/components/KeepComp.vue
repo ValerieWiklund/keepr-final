@@ -11,7 +11,7 @@
 <script>
 export default {
   name: "keep",
-  props: ["keepProp"]
+  props: ["keepProp"],
   data() {
     return {};
   },
