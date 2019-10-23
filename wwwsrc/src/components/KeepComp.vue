@@ -9,6 +9,11 @@
         </span>
       </h5>
       <p class="card-text">{{keepProp.description}}</p>
+      <!-- create drowpdown for adding to vault -->
+      <select v-model="newVaultId" @change="addToVault">
+        <option disabled value>Add to Vault</option>
+        <option v-for="vault in vaults" :value="vault.id" :key="vault.id">{{vault.name}}</option>
+      </select>
     </div>
   </div>
 </template>
@@ -18,12 +23,27 @@ export default {
   name: "keep",
   props: ["keepProp"],
   data() {
-    return {};
+    return {
+      newVaultId: ""
+    };
   },
-  computed: {},
+  computed: {
+    vaults() {
+      return this.$store.state.vaults;
+    }
+  },
   methods: {
     deleteKeep(keep) {
       this.$store.dispatch("deleteKeep", keep);
+    },
+
+    addToVault() {
+      debugger;
+      let data = {
+        vaultId: this.newVaultId,
+        keepId: this.keepProp.id
+      };
+      this.$store.dispatch("createVaultKeep", data);
     }
   },
   components: {}

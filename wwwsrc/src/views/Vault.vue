@@ -3,6 +3,9 @@
     <div class="vault">
       <h3>Keeps in this vault</h3>
       <div class="row">
+        <button class="btn btn-primary" @click="goDashboard">Dashboard</button>
+      </div>
+      <div class="row">
         <keep v-for="keep in keeps" :keepProp="keep" :key="keep.id" />
       </div>
     </div>
@@ -14,7 +17,6 @@ import Keep from "../components/KeepComp";
 export default {
   name: "vault",
   mounted() {
-    debugger;
     this.$store.dispatch("getKeepsByVault", this.$route.params.vaultId);
   },
   computed: {
@@ -28,6 +30,10 @@ export default {
   methods: {
     logout() {
       this.$store.dispatch("logout");
+    },
+
+    goDashboard() {
+      this.$router.push({ name: "dashboard" });
     }
   },
   components: { Keep }

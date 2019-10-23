@@ -27,7 +27,6 @@ export default {
     },
 
     viewVault(vault) {
-      debugger;
       let vaultId = vault.id;
       this.$router.push({ name: "vault", params: { vaultId } });
     }
