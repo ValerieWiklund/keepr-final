@@ -25,12 +25,9 @@ namespace keepr_final.Services
       return _repo.GetKeeps(vaultId, userId);
     }
 
+
     internal VaultKeep Create(VaultKeep newVaultKeep)
     {
-
-      //   Vault vault = _vaultrepo.Get(VaultKeep.vaultId);
-
-
       int id = _repo.Create(newVaultKeep);
       newVaultKeep.Id = id;
       return newVaultKeep;

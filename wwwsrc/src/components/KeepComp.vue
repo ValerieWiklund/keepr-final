@@ -1,5 +1,5 @@
 <template>
-  <div class="keep card border-primary" style="width: 12rem;">
+  <div class="keep card border-primary" style="width: 12rem;" @click="viewKeep()">
     <img v-bind:src="`${keepProp.img}`" class="card-img-top" alt="..." />
     <div class="card-body">
       <h5>
@@ -9,11 +9,6 @@
         </span>
       </h5>
       <p class="card-text">{{keepProp.description}}</p>
-      <!-- create drowpdown for adding to vault -->
-      <select v-model="newVaultId" @change="addToVault">
-        <option disabled value>Add to Vault</option>
-        <option v-for="vault in vaults" :value="vault.id" :key="vault.id">{{vault.name}}</option>
-      </select>
     </div>
   </div>
 </template>
@@ -44,6 +39,14 @@ export default {
         keepId: this.keepProp.id
       };
       this.$store.dispatch("createVaultKeep", data);
+    },
+
+    viewKeep() {
+      debugger;
+      this.$router.push({
+        name: "keep",
+        params: { keepId: this.keepProp.id }
+      });
     }
   },
   components: {}

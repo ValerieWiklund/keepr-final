@@ -36,7 +36,7 @@ export default new Vuex.Store({
 
     setActiveKeep(state, data) {
       state.activeKeep = data
-    }
+    },
 
     setVaults(state, data) {
       state.vaults = data
@@ -48,7 +48,7 @@ export default new Vuex.Store({
       try {
         let user = await AuthService.Register(creds)
         commit('setUser', user)
-        router.push({ name: "home" })
+        router.push({ name: "dashboard" })
       } catch (e) {
         console.warn(e.message)
       }
@@ -57,7 +57,7 @@ export default new Vuex.Store({
       try {
         let user = await AuthService.Login(creds)
         commit('setUser', user)
-        router.push({ name: "home" })
+        router.push({ name: "dashboard" })
       } catch (e) {
         console.warn(e.message)
       }
@@ -87,7 +87,9 @@ export default new Vuex.Store({
 
     async getKeepById({ commit }, data) {
       try {
-        let res = await api.get(`keeps/${data.id}`)
+        debugger
+        let res = await api.get(`keeps/${data}`)
+        debugger
         commit('setActiveKeep', res.data)
       } catch (error) {
         console.error(error)
@@ -164,7 +166,7 @@ export default new Vuex.Store({
 
     async createVaultKeep({ dispatch }, data) {
       try {
-        debugger
+
         let res = await api.post('vaultkeeps', data)
 
       } catch (error) {
