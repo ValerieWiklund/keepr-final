@@ -4,12 +4,15 @@
       <img :src="keep.img" />
       <h1>{{keep.name}}</h1>
       <h5>{{keep.description}}</h5>
-      <select v-model="newVaultId" @change="addToVault">
-        <option disabled value>Add to Vault</option>
-        <option v-for="vault in vaults" :value="vault.id" :key="vault.id">{{vault.name}}</option>
-      </select>
+      <div v-if="user.id">
+        <select v-model="newVaultId" @change="addToVault(keep)">
+          <option disabled value>Add to Vault</option>
+          <option v-for="vault in vaults" :value="vault.id" :key="vault.id">{{vault.name}}</option>
+        </select>
+      </div>
       <div class="row">
-        <button class="btn btn-primary" @click="goDashboard">Dashboard</button>
+        <button v-if="user.id" @click="goDashboard">Dashboard</button>
+        <button v-if="!user.id" @click="goHome">Back</button>
       </div>
     </div>
   </div>
@@ -46,7 +49,10 @@ export default {
       this.$store.dispatch("logout");
     },
 
-    addToVault() {
+    addToVault(keep) {
+      keep.keeps++;
+      this.$store.dispatch("editKeep", keep, keep.id);
+      debugger;
       let data = {
         vaultId: this.newVaultId,
         keepId: this.keep.id
@@ -56,6 +62,10 @@ export default {
 
     goDashboard() {
       this.$router.push({ name: "dashboard" });
+    },
+
+    goHome() {
+      this.$router.push({ name: "home" });
     }
   },
   components: {}

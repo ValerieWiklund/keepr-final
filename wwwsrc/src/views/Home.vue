@@ -5,9 +5,9 @@
       <button v-if="user.id" @click="logout">logout</button>
       <router-link v-else :to="{name: 'login'}">Login</router-link>
     </div>
-
-    <h3>This is all possible keeps</h3>
-    <keep v-for="keep in keeps" :keepProp="keep" :key="keep.id" />
+    <div class="row">
+      <keep v-for="keep in keeps" :keepProp="keep" :key="keep.id" />
+    </div>
   </div>
 </template>
 

@@ -1,14 +1,17 @@
 <template>
-  <div class="keep card border-primary" style="width: 12rem;" @click="viewKeep()">
-    <img v-bind:src="`${keepProp.img}`" class="card-img-top" alt="..." />
-    <div class="card-body">
-      <h5>
-        {{keepProp.name}}
-        <span class="btn btn-sm" @click="deleteKeep(keepProp)">
-          <i class="far fa-times-circle fa-2x"></i>
-        </span>
-      </h5>
-      <p class="card-text">{{keepProp.description}}</p>
+  <div class="card-deck">
+    <div class="keep card border-primary" style="width: 12rem;">
+      <img v-bind:src="`${keepProp.img}`" class="card-img-top" alt="..." />
+      <div class="card-body" @click="viewKeep()">
+        <h5>{{keepProp.name}}</h5>
+        <p class="card-text">{{keepProp.description}}</p>
+        <p>Keeps: {{keepProp.keeps}}</p>
+        <p>Views: {{keepProp.views}}</p>
+      </div>
+      <div class="card-footer">
+        <button v-if="$route.name ==='vault'" @click="removeVaultKeep">Remove from Vault</button>
+        <button v-if="$route.name ==='dashboard'" @click="deleteKeep(keepProp)">Delete Keep</button>
+      </div>
     </div>
   </div>
 </template>
@@ -28,25 +31,37 @@ export default {
     }
   },
   methods: {
-    deleteKeep(keep) {
-      this.$store.dispatch("deleteKeep", keep);
+    deleteKeep(keepProp) {
+      if (!keepProp.isPrivate) {
+        alert("you cannot delete a public keep");
+      } else {
+        let data = this.keepProp.id;
+        this.$store.dispatch("deleteKeep", data);
+      }
     },
 
     addToVault() {
-      debugger;
       let data = {
-        vaultId: this.newVaultId,
+        vaultId: this.$route.params.vaultId,
         keepId: this.keepProp.id
       };
       this.$store.dispatch("createVaultKeep", data);
     },
 
     viewKeep() {
-      debugger;
       this.$router.push({
         name: "keep",
         params: { keepId: this.keepProp.id }
       });
+    },
+
+    removeVaultKeep() {
+      let data = {
+        vaultId: this.$route.params.vaultId,
+        keepId: this.keepProp.id
+      };
+
+      this.$store.dispatch("removeVaultKeep", data);
     }
   },
   components: {}
