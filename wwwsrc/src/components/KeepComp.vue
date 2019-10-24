@@ -2,7 +2,7 @@
   <div class="card-deck">
     <div class="keep card border-primary" style="width: 12rem;">
       <img v-bind:src="`${keepProp.img}`" class="card-img-top" alt="..." />
-      <div class="card-body" @click="viewKeep()">
+      <div class="card-body" @click="viewKeep(keepProp)">
         <h5>{{keepProp.name}}</h5>
         <p class="card-text">{{keepProp.description}}</p>
         <p>Keeps: {{keepProp.keeps}}</p>
@@ -48,7 +48,10 @@ export default {
       this.$store.dispatch("createVaultKeep", data);
     },
 
-    viewKeep() {
+    viewKeep(keepProp) {
+      keepProp.views++;
+      debugger;
+      this.$store.dispatch("editKeep", keepProp);
       this.$router.push({
         name: "keep",
         params: { keepId: this.keepProp.id }

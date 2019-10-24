@@ -10,6 +10,7 @@
           <option v-for="vault in vaults" :value="vault.id" :key="vault.id">{{vault.name}}</option>
         </select>
       </div>
+      <button v-if="user.id" @click="addKeep(keep)">Add to my Keeps</button>
       <div class="row">
         <button v-if="user.id" @click="goDashboard">Dashboard</button>
         <button v-if="!user.id" @click="goHome">Back</button>
@@ -47,6 +48,11 @@ export default {
   methods: {
     logout() {
       this.$store.dispatch("logout");
+    },
+
+    addKeep(keep) {
+      debugger;
+      this.$store.dispatch("addKeep", keep);
     },
 
     addToVault(keep) {
