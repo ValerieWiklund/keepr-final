@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="vault">
-      <h3>Keeps in this vault</h3>
+      <h3>Keeps in {{this.$route.params.Name}}</h3>
       <div class="row">
         <button class="btn btn-primary" @click="goDashboard">Dashboard</button>
       </div>

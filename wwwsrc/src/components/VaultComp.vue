@@ -1,14 +1,10 @@
 <template>
   <div class="vault card border-primary" style="width: 100%;">
     <div class="card-body">
-      <h5 class="card-title">
-        {{vaultProp.name}}
-        <span class="btn btn-sm" @click="deleteVault(vaultProp)">
-          <i class="far fa-times-circle fa-2x"></i>
-        </span>
-      </h5>
+      <h5 class="card-title">{{vaultProp.name}}</h5>
       <p class="card-text">{{vaultProp.description}}</p>
-      <button class="btn btn-primary" @click="viewVault(vaultProp)">View Vault</button>
+      <button class="btn btn-primary btn-sm mx-1" @click="viewVault(vaultProp)">View Vault</button>
+      <button class="btn btn-primary btn-sm mx-1" @click="deleteVault(vaultProp)">Delete Vault</button>
     </div>
   </div>
 </template>

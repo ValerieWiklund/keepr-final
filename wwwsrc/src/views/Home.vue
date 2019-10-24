@@ -2,8 +2,9 @@
   <div>
     <div class="home">
       <h1>Welcome to Keepr</h1>
-      <button v-if="user.id" @click="logout">logout</button>
+      <button class="btn btn-primary btn-sm m-2" v-if="user.id" @click="logout">logout</button>
       <router-link v-else :to="{name: 'login'}">Login</router-link>
+      <button class="btn btn-primary btn-sm" @click="goDashboard">Dashboard</button>
     </div>
     <div class="row">
       <keep v-for="keep in keeps" :keepProp="keep" :key="keep.id" />
@@ -29,6 +30,10 @@ export default {
   methods: {
     logout() {
       this.$store.dispatch("logout");
+    },
+
+    goDashboard() {
+      this.$router.push({ name: "dashboard" });
     }
   },
   components: { Keep }

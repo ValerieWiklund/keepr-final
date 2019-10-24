@@ -1,6 +1,6 @@
 <template>
-  <div class="card-deck">
-    <div class="keep card border-primary" style="width: 12rem;">
+  <div class="card-deck p-3">
+    <div class="keep card border-primary" style="width: 15rem;">
       <img v-bind:src="`${keepProp.img}`" class="card-img-top" alt="..." />
       <div class="card-body" @click="viewKeep(keepProp)">
         <h5>{{keepProp.name}}</h5>
@@ -9,8 +9,16 @@
         <p>Views: {{keepProp.views}}</p>
       </div>
       <div class="card-footer">
-        <button v-if="$route.name ==='vault'" @click="removeVaultKeep">Remove from Vault</button>
-        <button v-if="$route.name ==='dashboard'" @click="deleteKeep(keepProp)">Delete Keep</button>
+        <button
+          class="btn btn-primary btn-sm m-2"
+          v-if="$route.name ==='vault'"
+          @click="removeVaultKeep"
+        >Remove from Vault</button>
+        <button
+          class="btn btn-primary btn-sm m-2"
+          v-if="$route.name ==='dashboard'"
+          @click="deleteKeep(keepProp)"
+        >Delete Keep</button>
       </div>
     </div>
   </div>
@@ -71,4 +79,7 @@ export default {
 };
 </script>
 <style scoped>
+/* .img{
+  height: ;
+} */
 </style>

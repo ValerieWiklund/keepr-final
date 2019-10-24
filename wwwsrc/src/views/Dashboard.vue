@@ -1,13 +1,14 @@
 <template>
   <div class="dashboard">
     <h1>Welcome Home {{user.username}}</h1>
-    <button v-if="user.id" @click="logout">logout</button>
+    <button class="btn btn-primary btn-sm mr-2" v-if="user.id" @click="logout">logout</button>
+    <button class="btn btn-primary btn-sm ml-2" @click="goHome">Home</button>
     <div class="row">
       <div class="col-4">
         <h4>Your Keeps</h4>
         <CreateKeepModal />
         <button
-          class="btn btn-primary"
+          class="btn btn-primary btn-sm mb-2"
           data-toggle="modal"
           data-target="#create-keep-modal"
         >Create Keep</button>
@@ -17,7 +18,7 @@
         <h4>Your Vaults</h4>
         <CreateVaultModal />
         <button
-          class="btn btn-primary"
+          class="btn btn-primary btn-sm mb-2"
           data-toggle="modal"
           data-target="#create-vault-modal"
         >Create vault</button>
@@ -52,6 +53,10 @@ export default {
   methods: {
     logout() {
       this.$store.dispatch("logout");
+    },
+
+    goHome() {
+      this.$router.push({ name: "home" });
     }
   },
   components: { Keep, Vault, CreateKeepModal, CreateVaultModal }
