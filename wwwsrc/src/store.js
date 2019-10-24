@@ -114,7 +114,8 @@ export default new Vuex.Store({
 
     async editKeep({ dispatch }, data) {
       try {
-        let res = await api.put(`keeps/${data.id}`)
+        debugger
+        let res = await api.put(`keeps/${data.id}`, data)
         dispatch("getKeepById")
       } catch (error) {
         console.error(error)

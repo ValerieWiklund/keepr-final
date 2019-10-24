@@ -51,8 +51,7 @@ export default {
 
     addToVault(keep) {
       keep.keeps++;
-      this.$store.dispatch("editKeep", keep, keep.id);
-      debugger;
+      this.$store.dispatch("editKeep", keep);
       let data = {
         vaultId: this.newVaultId,
         keepId: this.keep.id
