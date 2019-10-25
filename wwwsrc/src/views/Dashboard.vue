@@ -12,7 +12,9 @@
           data-toggle="modal"
           data-target="#create-keep-modal"
         >Create Keep</button>
-        <keep v-for="keep in keeps" :keepProp="keep" :key="keep.id" />
+        <div class="row">
+          <keep v-for="keep in keeps" :keepProp="keep" :key="keep.id" />
+        </div>
       </div>
       <div class="offset-1 col-3 justify-content-center">
         <h4>Your Vaults</h4>

@@ -78,11 +78,11 @@ namespace keepr_final.Controllers
     [Authorize]
     [HttpPut("{id}")]
 
-    public ActionResult<Keep> Edit([FromBody] Keep editKeep)
+    public ActionResult<Keep> Edit([FromBody] Keep editKeep, int id)
     {
       try
       {
-        // editKeep.Id = id;
+        //   id = editKeep.Id;
         return Ok(_ks.Edit(editKeep));
       }
       catch (Exception e)

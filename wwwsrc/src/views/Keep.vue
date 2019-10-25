@@ -1,5 +1,9 @@
 <template>
   <div class="keepDetail">
+    <div class="row justify-content-start">
+      <button class="btn btn-warning mt-5 ml-5" v-if="user.id" @click="goDashboard">Dashboard</button>
+      <button class="btn btn-warning mt-5 ml-5" v-if="!user.id" @click="goHome">Back</button>
+    </div>
     <div class="row p-5"></div>
     <div class="row">
       <div class="col-12">
@@ -10,21 +14,17 @@
           <i class="far fa-eye"></i>
           {{keep.views}}
         </span>
-        <span class="badge badge-pill badge-success ml-1">
+        <span class="badge badge-pill badge-success ml-1 mb-2">
           <i class="fas fa-lock"></i>
           {{keep.keeps}}
         </span>
-        <div v-if="user.id">
+        <div class="align-top" v-if="user.id">
           <select v-model="newVaultId" @change="addToVault(keep)">
             <option disabled value>Add to Vault</option>
             <option v-for="vault in vaults" :value="vault.id" :key="vault.id">{{vault.name}}</option>
           </select>
         </div>
         <button class="btn btn-danger mt-5" v-if="user.id" @click="addKeep(keep)">Add to my Keeps</button>
-        <div class="row justify-content-center">
-          <button class="btn btn-warning mt-5" v-if="user.id" @click="goDashboard">Dashboard</button>
-          <button class="btn btn-warning mt-5" v-if="!user.id" @click="goHome">Back</button>
-        </div>
       </div>
     </div>
   </div>
