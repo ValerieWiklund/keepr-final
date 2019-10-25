@@ -1,27 +1,27 @@
 <template>
-  <div class="card-deck p-3">
-    <div class="keep card border-primary" style="width: 15rem;">
-      <img v-bind:src="`${keepProp.img}`" class="card-img-top" alt="..." />
-      <div class="card-body" @click="viewKeep(keepProp)">
-        <h5>{{keepProp.name}}</h5>
-        <p class="card-text">{{keepProp.description}}</p>
-        <p>Keeps: {{keepProp.keeps}}</p>
-        <p>Views: {{keepProp.views}}</p>
-      </div>
-      <div class="card-footer">
-        <button
-          class="btn btn-primary btn-sm m-2"
-          v-if="$route.name ==='vault'"
-          @click="removeVaultKeep"
-        >Remove from Vault</button>
-        <button
-          class="btn btn-primary btn-sm m-2"
-          v-if="$route.name ==='dashboard'"
-          @click="deleteKeep(keepProp)"
-        >Delete Keep</button>
-      </div>
+  <!-- <div class="card-deck p-3"> -->
+  <div class="keep card text-white bg-primary m-3" style="width: 15rem;">
+    <img v-bind:src="`${keepProp.img}`" class="card-img-top" alt="..." />
+    <div class="card-body" @click="viewKeep(keepProp)">
+      <h5>{{keepProp.name}}</h5>
+      <!-- <p class="card-text">{{keepProp.description}}</p> -->
+      <p>Keeps: {{keepProp.keeps}}</p>
+      <p>Views: {{keepProp.views}}</p>
+    </div>
+    <div class="card-footer">
+      <button
+        class="btn btn-primary btn-sm m-2"
+        v-if="$route.name ==='vault'"
+        @click="removeVaultKeep"
+      >Remove from Vault</button>
+      <button
+        class="btn btn-primary btn-sm m-2"
+        v-if="$route.name ==='dashboard'"
+        @click="deleteKeep(keepProp)"
+      >Delete Keep</button>
     </div>
   </div>
+  <!-- </div> -->
 </template>
 
 <script>

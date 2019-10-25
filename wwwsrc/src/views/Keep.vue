@@ -1,19 +1,22 @@
 <template>
-  <div>
-    <div class="keepDetail">
-      <img :src="keep.img" />
-      <h1>{{keep.name}}</h1>
-      <h5>{{keep.description}}</h5>
-      <div v-if="user.id">
-        <select v-model="newVaultId" @change="addToVault(keep)">
-          <option disabled value>Add to Vault</option>
-          <option v-for="vault in vaults" :value="vault.id" :key="vault.id">{{vault.name}}</option>
-        </select>
-      </div>
-      <button v-if="user.id" @click="addKeep(keep)">Add to my Keeps</button>
-      <div class="row">
-        <button v-if="user.id" @click="goDashboard">Dashboard</button>
-        <button v-if="!user.id" @click="goHome">Back</button>
+  <div class="keepDetail">
+    <div class="row p-5"></div>
+    <div class="row">
+      <div class="col-12">
+        <img :src="keep.img" />
+        <h1 class="text-white">{{keep.name}}</h1>
+        <h5 class="text-white">{{keep.description}}</h5>
+        <div v-if="user.id">
+          <select v-model="newVaultId" @change="addToVault(keep)">
+            <option disabled value>Add to Vault</option>
+            <option v-for="vault in vaults" :value="vault.id" :key="vault.id">{{vault.name}}</option>
+          </select>
+        </div>
+        <button class="btn btn-danger mt-5" v-if="user.id" @click="addKeep(keep)">Add to my Keeps</button>
+        <div class="row justify-content-center">
+          <button class="btn btn-warning mt-5" v-if="user.id" @click="goDashboard">Dashboard</button>
+          <button class="btn btn-warning mt-5" v-if="!user.id" @click="goHome">Back</button>
+        </div>
       </div>
     </div>
   </div>
