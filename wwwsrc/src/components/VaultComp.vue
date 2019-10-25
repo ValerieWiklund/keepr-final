@@ -23,6 +23,8 @@ export default {
     },
 
     viewVault(vault) {
+      let data = {};
+      this.$store.commit("setKeeps", data);
       let vaultId = vault.id;
       this.$router.push({ name: "vault", params: { vaultId } });
     }

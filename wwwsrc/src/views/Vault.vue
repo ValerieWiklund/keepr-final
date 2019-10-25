@@ -33,6 +33,8 @@ export default {
     },
 
     goDashboard() {
+      let data = {};
+      this.$store.commit("setKeeps", data);
       this.$router.push({ name: "dashboard" });
     }
   },

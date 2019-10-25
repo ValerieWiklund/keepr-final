@@ -1,8 +1,13 @@
 <template>
   <div class="card-group" style="width: 12rem;">
     <div class="keep card text-white bg-primary m-3">
-      <img v-bind:src="`${keepProp.img}`" class="card-img-top" alt="..." />
-      <div class="card-body" @click="viewKeep(keepProp)">
+      <img
+        v-bind:src="`${keepProp.img}`"
+        class="card-img-top"
+        alt="..."
+        @click="viewKeep(keepProp)"
+      />
+      <div class="card-body">
         <h5>{{keepProp.name}}</h5>
         <!-- <p class="card-text">{{keepProp.description}}</p> -->
         <span class="badge badge-pill badge-success mr-1" @click="viewKeep(keepProp)">
@@ -63,8 +68,10 @@ export default {
     },
 
     viewKeep(keepProp) {
-      keepProp.views++;
-      this.$store.dispatch("editKeep", keepProp);
+      if (keepProp.userId) {
+        keepProp.views++;
+        this.$store.dispatch("editKeep", keepProp);
+      }
       this.$router.push({
         name: "keep",
         params: { keepId: this.keepProp.id }
