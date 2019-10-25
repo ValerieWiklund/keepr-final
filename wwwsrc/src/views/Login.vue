@@ -1,5 +1,5 @@
 <template>
-  <div class="login">
+  <div class="login mt-5">
     <form v-if="loginForm" @submit.prevent="loginUser">
       <input type="email" v-model="creds.email" placeholder="email" />
       <input type="password" v-model="creds.password" placeholder="password" />
@@ -12,8 +12,8 @@
       <button type="submit">Create Account</button>
     </form>
     <div @click="loginForm = !loginForm">
-      <p v-if="loginForm">No account Click to Register</p>
-      <p v-else>Already have an account click to Login</p>
+      <p class="text-white" v-if="loginForm">No account Click to Register</p>
+      <p class="text-white" v-else>Already have an account click to Login</p>
     </div>
   </div>
 </template>

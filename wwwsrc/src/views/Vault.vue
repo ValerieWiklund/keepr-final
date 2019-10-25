@@ -1,8 +1,8 @@
 <template>
   <div>
     <div class="vault">
-      <h3>Keeps in {{this.$route.params.Name}}</h3>
-      <div class="row">
+      <h3 class="text-white">Keeps in This Vault</h3>
+      <div class="row justify-content-center">
         <button class="btn btn-primary" @click="goDashboard">Dashboard</button>
       </div>
       <div class="row">
@@ -39,3 +39,9 @@ export default {
   components: { Keep }
 };
 </script>
+
+<style scoped>
+.vault {
+  align-content: center;
+}
+</style>

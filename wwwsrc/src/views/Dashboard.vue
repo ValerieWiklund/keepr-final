@@ -1,10 +1,10 @@
 <template>
-  <div class="dashboard">
+  <div class="container-fluid dashboard">
     <h1>Welcome Home {{user.username}}</h1>
     <button class="btn btn-primary btn-sm mr-2" v-if="user.id" @click="logout">logout</button>
     <button class="btn btn-primary btn-sm ml-2" @click="goHome">Home</button>
-    <div class="row">
-      <div class="col-4">
+    <div class="row justify-content-center">
+      <div class="col-7">
         <h4>Your Keeps</h4>
         <CreateKeepModal />
         <button
@@ -14,7 +14,7 @@
         >Create Keep</button>
         <keep v-for="keep in keeps" :keepProp="keep" :key="keep.id" />
       </div>
-      <div class="offset-2 col-4">
+      <div class="offset-1 col-3 justify-content-center">
         <h4>Your Vaults</h4>
         <CreateVaultModal />
         <button
@@ -62,3 +62,8 @@ export default {
   components: { Keep, Vault, CreateKeepModal, CreateVaultModal }
 };
 </script>
+<style scoped>
+.dashboard {
+  color: white;
+}
+</style>

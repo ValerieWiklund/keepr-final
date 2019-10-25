@@ -6,6 +6,14 @@
         <img :src="keep.img" />
         <h1 class="text-white">{{keep.name}}</h1>
         <h5 class="text-white">{{keep.description}}</h5>
+        <span class="badge badge-pill badge-success mr-1">
+          <i class="far fa-eye"></i>
+          {{keep.views}}
+        </span>
+        <span class="badge badge-pill badge-success ml-1">
+          <i class="fas fa-lock"></i>
+          {{keep.keeps}}
+        </span>
         <div v-if="user.id">
           <select v-model="newVaultId" @change="addToVault(keep)">
             <option disabled value>Add to Vault</option>
@@ -54,7 +62,6 @@ export default {
     },
 
     addKeep(keep) {
-      debugger;
       this.$store.dispatch("addKeep", keep);
     },
 

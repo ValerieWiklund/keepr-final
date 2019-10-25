@@ -1,10 +1,10 @@
 <template>
-  <div class="vault card border-primary" style="width: 100%;">
+  <div class="vault card text-white bg-light mb-1" style="width: 90%;">
     <div class="card-body">
       <h5 class="card-title">{{vaultProp.name}}</h5>
       <p class="card-text">{{vaultProp.description}}</p>
-      <button class="btn btn-primary btn-sm mx-1" @click="viewVault(vaultProp)">View Vault</button>
-      <button class="btn btn-primary btn-sm mx-1" @click="deleteVault(vaultProp)">Delete Vault</button>
+      <button class="btn btn-primary btn-sm mr-1" @click="viewVault(vaultProp)">View Vault</button>
+      <button class="btn btn-primary btn-sm ml-1" @click="deleteVault(vaultProp)">Delete Vault</button>
     </div>
   </div>
 </template>

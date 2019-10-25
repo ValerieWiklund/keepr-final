@@ -42,10 +42,10 @@
                 />
               </div>
               <div class="form-check">
-                <label for="isPrivate">Make this Keep Privaate</label>
+                <label for="isPrivate">Make Private?</label>
                 <input
                   type="checkbox"
-                  class="form-check-input"
+                  class="form-check-input ml-2"
                   id="isPrivate"
                   placeholder="Enter private or public"
                   v-model="newKeep.isPrivate"
