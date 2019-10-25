@@ -1,6 +1,6 @@
 <template>
   <div class="container-fluid dashboard">
-    <h1>Welcome Home {{user.username}}</h1>
+    <h1>Welcome {{user.username}}</h1>
     <button class="btn btn-primary btn-sm mr-2" v-if="user.id" @click="logout">logout</button>
     <button class="btn btn-primary btn-sm ml-2" @click="goHome">Home</button>
     <div class="row justify-content-center">

@@ -61,6 +61,14 @@ namespace keepr_final.Services
       return "Successfully Deleted";
     }
 
-
+    public Keep EditViewCount(Keep editKeep)
+    {
+      Keep keep = _repo.Get(editKeep.Id);
+      if (keep == null) { throw new Exception("Invalid Id"); }
+      keep.Views = editKeep.Views;
+      keep.Keeps = editKeep.Keeps;
+      _repo.EditViewCount(keep);
+      return keep;
+    }
   }
 }

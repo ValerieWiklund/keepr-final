@@ -24,7 +24,7 @@
             <option v-for="vault in vaults" :value="vault.id" :key="vault.id">{{vault.name}}</option>
           </select>
         </div>
-        <button class="btn btn-danger mt-5" v-if="user.id" @click="addKeep(keep)">Add to my Keeps</button>
+        <button class="btn btn-danger my-5" v-if="user.id" @click="addKeep(keep)">Add to my Keeps</button>
       </div>
     </div>
   </div>
@@ -62,7 +62,9 @@ export default {
     },
 
     addKeep(keep) {
+      keep.isPrivate = true;
       this.$store.dispatch("addKeep", keep);
+      this.goDashboard();
     },
 
     addToVault(keep) {

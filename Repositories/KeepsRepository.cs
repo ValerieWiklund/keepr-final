@@ -58,6 +58,17 @@ namespace keepr_final.Repositories
       _db.Execute(sql, keep);
     }
 
+    public void EditViewCount(Keep keep)
+    {
+      string sql = @"
+                UPDATE keeps
+                SET
+                    keeps = @Keeps,
+                    views = @Views
+                    WHERE id = @Id";
+      _db.Execute(sql, keep);
+    }
+
     public void Delete(int id)
     {
       string sql = "DELETE FROM keeps WHERE id = @id AND isPrivate = 1";

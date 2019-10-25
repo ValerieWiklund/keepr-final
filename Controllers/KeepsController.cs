@@ -75,6 +75,21 @@ namespace keepr_final.Controllers
       }
     }
 
+    [HttpPut("{id}/view")]
+
+    public ActionResult<Keep> EditViewCount([FromBody] Keep editKeep, int id)
+    {
+      try
+      {
+        editKeep.Id = id;
+        return Ok(_ks.EditViewCount(editKeep));
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
+
     [Authorize]
     [HttpPut("{id}")]
 
