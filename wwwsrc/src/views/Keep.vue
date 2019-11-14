@@ -74,10 +74,10 @@ export default {
         vaultId: this.newVaultId,
         keepId: this.keep.id
       };
-      // debugger;
       this.$store.dispatch("createVaultKeep", data);
-      // this.$store.dispatch("getKeepsbyVault", data.vaultId);
-      // this.$router.push({ name: "vault" }, data.vaultId);
+      debugger;
+      this.$store.dispatch("getKeepsbyVault", data.vaultId);
+      this.$router.push({ name: "vault" }, data.vaultId);
     },
 
     goDashboard() {
