@@ -163,9 +163,8 @@ export default new Vuex.Store({
     //#endregion
 
     //#region  --VAULTKEEPS --
-    async getKeepsByVault({ commit, dispatch }, data) {
+    async getKeepsByVault({ commit }, data) {
       try {
-        debugger
         let res = await api.get(`vaultkeeps/${data}`)
         commit('setKeeps', res.data)
       } catch (error) {

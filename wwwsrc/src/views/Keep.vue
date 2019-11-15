@@ -75,9 +75,12 @@ export default {
         keepId: this.keep.id
       };
       this.$store.dispatch("createVaultKeep", data);
-      debugger;
-      this.$store.dispatch("getKeepsbyVault", data.vaultId);
-      this.$router.push({ name: "vault" }, data.vaultId);
+      let vaultId = data.vaultId;
+      data = {};
+      this.$store.commit("setKeeps", data);
+      this.$store.dispatch("getKeepsbyVault", vaultId);
+      this.$router.push({ name: "vault", params: { vaultId } });
+      // this.$router.push({ name: "vault" }, data.vaultId);
     },
 
     goDashboard() {
