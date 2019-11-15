@@ -23,6 +23,7 @@ export default {
     },
 
     viewVault(vault) {
+      this.$store.commit("setActiveVault", vault);
       let data = {};
       this.$store.commit("setKeeps", data);
       let vaultId = vault.id;

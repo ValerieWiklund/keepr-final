@@ -40,7 +40,12 @@ export default new Vuex.Store({
 
     setVaults(state, data) {
       state.vaults = data
+    },
+
+    setActiveVault(state, data) {
+      state.activeVault = data
     }
+
   },
   actions: {
     //#region -- AUTHORIZATION/USER  --
@@ -188,10 +193,6 @@ export default new Vuex.Store({
         console.error(error)
       }
     }
-
-
-
-
     ////#endregion
   }
 })

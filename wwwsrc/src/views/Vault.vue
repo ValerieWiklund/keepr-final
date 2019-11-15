@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="vault">
-      <h3 class="text-white">Keeps in This Vault</h3>
+      <h3 class="text-white">Keeps in {{vault.name}} Vault</h3>
       <div class="row justify-content-center">
         <button class="btn btn-primary" @click="goDashboard">Dashboard</button>
       </div>
@@ -16,6 +16,7 @@
 import Keep from "../components/KeepComp";
 export default {
   name: "vault",
+
   mounted() {
     this.$store.dispatch("getKeepsByVault", this.$route.params.vaultId);
   },
@@ -25,6 +26,9 @@ export default {
     },
     keeps() {
       return this.$store.state.keeps;
+    },
+    vault() {
+      return this.$store.state.activeVault;
     }
   },
   methods: {
