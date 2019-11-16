@@ -24,7 +24,12 @@
             <option v-for="vault in vaults" :value="vault.id" :key="vault.id">{{vault.name}}</option>
           </select>
         </div>
-        <button class="btn btn-danger my-5" v-if="user.id" @click="addKeep(keep)">Add to my Keeps</button>
+
+        <button
+          class="btn btn-danger my-5"
+          v-if="user.id && user.id != keep.userId"
+          @click="addKeep(keep)"
+        >Add to my Keeps</button>
       </div>
     </div>
   </div>
@@ -54,6 +59,10 @@ export default {
     },
     keep() {
       return this.$store.state.activeKeep;
+    },
+    keeps() {
+      debugger;
+      return this.$store.state.keeps;
     }
   },
   methods: {
